@@ -105,7 +105,7 @@ INSERT INTO User (uname, points, player1, player2, player3) VALUES
     ('Maddy', 0, 'Bill Gates', 'Iron Man', 'Mario'),
     ('User3', 0, 'Toyota Corolla', 'Neil Armstrong', 'Lebron James');
     -- ('User3', 0, 'Harry Potter', 'Professor Reilly', 'Mario');
-        -- the above line throws an error about a diplicate entry for User3 for the primary key, even with different player values
+        -- the above line throws an error about a duplicate entry for User3 for the primary key, even with different player values
 
 -- Insert times for five matches
 INSERT INTO Matches (match_id, time_stamp) VALUES
