@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS Player;
 
 -- Changed durability to durabil due to SQL keyword 'durability'
 -- table Player is the stats and descriptions of each player that participates in a match
-    -- pname: The player’s name.
+    -- pname: The player’s name. This is the primary key.
     -- strength: Rating of player’s strength.
     -- intelligence: Rating of player’s intelligence.
     -- durability: Rating of player’s durability.
@@ -29,8 +29,11 @@ CREATE TABLE Player (
 );
 
 -- table User are the stats of each person that participates in the fantasy league tournament
-    -- uname: The username of this user.
+    -- uname: The username of this user. This is the primary key.
     -- points: Point tally accrued by this user from all non-tournament matches.
+    -- player1: the first player the user recruits
+    -- player2: the second player the user recruits
+    -- player3: the third player the user recruits
 CREATE TABLE User (
     uname varchar(20) NOT NULL,
     points integer,
@@ -44,8 +47,8 @@ CREATE TABLE User (
 );
 
 -- Changed table name to Matches due to SQL keyword 'Match'
--- A matchup between two players.
-    -- match_id: Number of match taking place.
+-- table Matches is a matchup between two players.
+    -- match_id: Number of match taking place. This is the primary key.
     -- timestamp: Time when the match takes place.
 CREATE TABLE Matches (
     match_id integer NOT NULL,
@@ -55,7 +58,7 @@ CREATE TABLE Matches (
 
 -- table PlaysIn represents the relationship between Player and Matches. 
 -- Every Matches must have Players, but not every Player is in a Match.
-    -- meeting_num:
+    -- meeting_num: the meeting number between the two players. Example: meeting number 1 is the first time that the two players are playing against each other 
     -- challenger: a foreign key to the first player that participates in the match
     -- opponent: a foreign key to the second player that participates in the match 
     -- match_id: a foreign key to the match_id of the match the players are playing in
@@ -71,8 +74,9 @@ CREATE TABLE PlaysIn (
 );
 
 -- table Tournament is the bracket of a competition.
-    -- tournament_match_id: Number of the tournament match taking place.
+    -- tournament_match_id: Number of the tournament match taking place. This is the primary key.
     -- round_num: The round number of the tournament match.
+    -- match_id: foreign key to the match_id of the Match entity
 CREATE TABLE Tournament (
     tournament_match_id integer NOT NULL,
     round_num integer,
@@ -100,6 +104,8 @@ INSERT INTO User (uname, points, player1, player2, player3) VALUES
     ('Anand', 0, 'Master Chief', 'A Brick', 'Julius Caesar'),
     ('Maddy', 0, 'Bill Gates', 'Iron Man', 'Mario'),
     ('User3', 0, 'Toyota Corolla', 'Neil Armstrong', 'Lebron James');
+    -- ('User3', 0, 'Harry Potter', 'Professor Reilly', 'Mario');
+        -- the above line throws an error about a diplicate entry for User3 for the primary key, even with different player values
 
 -- Insert times for five matches
 INSERT INTO Matches (match_id, time_stamp) VALUES
