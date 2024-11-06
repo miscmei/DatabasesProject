@@ -5,6 +5,16 @@ DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS Player;
 
 -- Changed durability to durabil due to SQL keyword 'durability'
+-- table Player is the stats and descriptions of each player that participates in a match
+    -- pname: The player’s name.
+    -- strength: Rating of player’s strength.
+    -- intelligence: Rating of player’s intelligence.
+    -- durability: Rating of player’s durability.
+    -- battle_iq: Rating of player’s battle IQ.
+    -- speed: Rating of player’s speed.
+    -- tech: Rating of players technology access.
+    -- magic: Rating of player’s magic abilities.
+    -- genre: The genre from which the player originates.
 CREATE TABLE Player (
     pname varchar(40) NOT NULL,
     strength integer,
@@ -18,6 +28,9 @@ CREATE TABLE Player (
     PRIMARY KEY(pname)
 );
 
+-- table User are the stats of each person that participates in the fantasy league tournament
+    -- uname: The username of this user.
+    -- points: Point tally accrued by this user from all non-tournament matches.
 CREATE TABLE User (
     uname varchar(20) NOT NULL,
     points integer,
@@ -31,12 +44,21 @@ CREATE TABLE User (
 );
 
 -- Changed table name to Matches due to SQL keyword 'Match'
+-- A matchup between two players.
+    -- match_id: Number of match taking place.
+    -- timestamp: Time when the match takes place.
 CREATE TABLE Matches (
     match_id integer NOT NULL,
     time_stamp datetime,
     PRIMARY KEY(match_id)
 );
 
+-- table PlaysIn represents the relationship between Player and Matches. 
+-- Every Matches must have Players, but not every Player is in a Match.
+    -- meeting_num:
+    -- challenger: a foreign key to the first player that participates in the match
+    -- opponent: a foreign key to the second player that participates in the match 
+    -- match_id: a foreign key to the match_id of the match the players are playing in
 CREATE TABLE PlaysIn (
     meeting_num integer NOT NULL,
     challenger varchar(40) NOT NULL,
@@ -48,6 +70,9 @@ CREATE TABLE PlaysIn (
     FOREIGN KEY (match_id) REFERENCES Matches (match_id)
 );
 
+-- table Tournament is the bracket of a competition.
+    -- tournament_match_id: Number of the tournament match taking place.
+    -- round_num: The round number of the tournament match.
 CREATE TABLE Tournament (
     tournament_match_id integer NOT NULL,
     round_num integer,
@@ -56,7 +81,7 @@ CREATE TABLE Tournament (
     FOREIGN KEY (match_id) REFERENCES Matches (match_id)
 );
 
--- Insert a few players
+-- Insert some players
 INSERT INTO Player (pname, strength, intelligence, durabil, battle_iq, speed, tech, magic, genre) VALUES
     ('Master Chief', 8, 4, 9, 10, 5, 8, 1, 'Fantasy'), 
     ('Julius Caesar', 3, 8, 3, 10, 4, 0, 0, 'Historical Figure'),
@@ -70,13 +95,13 @@ INSERT INTO Player (pname, strength, intelligence, durabil, battle_iq, speed, te
     ('Lebron James', 7, 4, 6, 3, 8, 4, 1, 'Real Person'),
     ('Mario', 2, 6, 4, 6, 4, 3, 9, 'Fantasy');
 
--- Insert two users
+-- Insert three users
 INSERT INTO User (uname, points, player1, player2, player3) VALUES
     ('Anand', 0, 'Master Chief', 'A Brick', 'Julius Caesar'),
-    ('Maddy', 0, 'Bill Gates', 'Iron Man', 'Mario')
+    ('Maddy', 0, 'Bill Gates', 'Iron Man', 'Mario'),
     ('User3', 0, 'Toyota Corolla', 'Neil Armstrong', 'Lebron James');
 
--- Insert times for two matches
+-- Insert times for five matches
 INSERT INTO Matches (match_id, time_stamp) VALUES
     (1, "2022-10-16 14:00:00"),
     (2, "2022-10-17 12:00:00"),
@@ -84,6 +109,7 @@ INSERT INTO Matches (match_id, time_stamp) VALUES
     (4, "2022-10-20 11:00:00"),
     (5, "2002-10-24 12:00:00");
 
+-- Insert players into PlaysIn table to know who is playing in each match
 INSERT INTO PlaysIn (meeting_num, challenger, opponent, match_id) VALUES
     (1, 'Master Chief', 'Iron Man', 1),
     (1, 'A Brick', 'Bill Gates', 2),
@@ -91,6 +117,6 @@ INSERT INTO PlaysIn (meeting_num, challenger, opponent, match_id) VALUES
     (1, 'Master Chief', 'Lebron James', 4),
     (2, 'A Brick', 'Bill Gates', 5);
 
-
+-- Insert values for one tournament
 INSERT INTO Tournament (tournament_match_id, round_num, match_id) VALUES
     (1, 1, 5);
