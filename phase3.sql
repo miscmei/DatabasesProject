@@ -97,13 +97,22 @@ INSERT INTO Player (pname, strength, intelligence, durabil, battle_iq, speed, te
     ('Neil Armstrong', 4, 8, 7, 2, 4, 6, 0, 'Historical Figure'),
     ('Professor Reilly', 10, 10, 10, 10, 10, 10, 10, 'Real Person'),
     ('Lebron James', 7, 4, 6, 3, 8, 4, 1, 'Real Person'),
-    ('Mario', 2, 6, 4, 6, 4, 3, 9, 'Fantasy');
+    ('Mario', 2, 6, 4, 6, 4, 3, 9, 'Fantasy'),
+    ('An Anvil', 10, 0, 10, 0, 0, 0, 0, 'Object'),
+    ('Steve Jobs', 2, 9, 3, 5, 3, 6, 0, 'Real Person'),
+    ('Minecraft Steve', 2, 6, 4, 6, 4, 3, 9, 'Fantasy'),
+    ('Link', 6, 6, 4, 6, 4, 7, 9, 'Fantasy'),
+    ('Sonic', 6, 6, 5, 5, 10, 7, 3, 'Fantasy')
+    ;
+
 
 -- Insert three users
 INSERT INTO User (uname, points, player1, player2, player3) VALUES
     ('Anand', 0, 'Master Chief', 'A Brick', 'Julius Caesar'),
     ('Maddy', 0, 'Bill Gates', 'Iron Man', 'Mario'),
-    ('User3', 0, 'Toyota Corolla', 'Neil Armstrong', 'Lebron James');
+    ('User3', 0, 'Toyota Corolla', 'Neil Armstrong', 'Lebron James'),
+    ('User4', 0, 'Sonic', 'Link', 'An Anvil'),
+    ('User5', 0, 'Steve Jobs', 'Professor Reilly', 'Minecraft Steve');
     -- ('User3', 0, 'Harry Potter', 'Professor Reilly', 'Mario');
         -- the above line throws an error about a duplicate entry for User3 for the primary key, even with different player values
 
@@ -113,7 +122,9 @@ INSERT INTO Matches (match_id, time_stamp) VALUES
     (2, "2022-10-17 12:00:00"),
     (3, "2022-10-20 10:00:00"),
     (4, "2022-10-20 11:00:00"),
-    (5, "2002-10-24 12:00:00");
+    (5, "2002-10-24 12:00:00"),
+    (6, "2002-10-21 08:00:00")
+    ;
 
 -- Insert players into PlaysIn table to know who is playing in each match
 INSERT INTO PlaysIn (meeting_num, challenger, opponent, match_id) VALUES
@@ -121,8 +132,12 @@ INSERT INTO PlaysIn (meeting_num, challenger, opponent, match_id) VALUES
     (1, 'A Brick', 'Bill Gates', 2),
     (1, 'Toyota Corolla', 'Mario', 3),
     (1, 'Master Chief', 'Lebron James', 4),
-    (2, 'A Brick', 'Bill Gates', 5);
+    (2, 'A Brick', 'Bill Gates', 5),
+    (1, 'Steve Jobs', 'Minecraft Steve', 6)
+    ;
 
 -- Insert values for one tournament
 INSERT INTO Tournament (tournament_match_id, round_num, match_id) VALUES
-    (1, 1, 5);
+    (1, 1, 5),
+    (2, 1, 6)
+    ;
