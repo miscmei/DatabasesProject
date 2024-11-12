@@ -102,7 +102,8 @@ INSERT INTO Player (pname, strength, intelligence, durabil, battle_iq, speed, te
     ('Steve Jobs', 2, 9, 3, 5, 3, 6, 0, 'Real Person'),
     ('Minecraft Steve', 2, 6, 4, 6, 4, 3, 9, 'Fantasy'),
     ('Link', 6, 6, 4, 6, 4, 7, 9, 'Fantasy'),
-    ('Sonic', 6, 6, 5, 5, 10, 7, 3, 'Fantasy')
+    ('Sonic', 6, 6, 5, 5, 10, 7, 3, 'Fantasy'),
+    ('Lightning McQueen', 7, 3, 6, 2, 10, 8, 4, 'Fantasy')
     ;
 
 
