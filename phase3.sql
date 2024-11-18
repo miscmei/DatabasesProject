@@ -52,26 +52,13 @@ CREATE TABLE User (
     -- timestamp: Time when the match takes place.
 CREATE TABLE Matches (
     match_id integer NOT NULL,
+    challenger varchar(40) NOT NULL,
+    opponent varchar(40) NOT NULL,
     time_stamp datetime,
     PRIMARY KEY(match_id)
 );
 
--- table PlaysIn represents the relationship between Player and Matches. 
--- Every Matches must have Players, but not every Player is in a Match.
-    -- meeting_num: the meeting number between the two players. Example: meeting number 1 is the first time that the two players are playing against each other 
-    -- challenger: a foreign key to the first player that participates in the match
-    -- opponent: a foreign key to the second player that participates in the match 
-    -- match_id: a foreign key to the match_id of the match the players are playing in
-CREATE TABLE PlaysIn (
-    meeting_num integer NOT NULL,
-    challenger varchar(40) NOT NULL,
-    opponent varchar(40) NOT NULL,
-    match_id integer NOT NULL,
-    PRIMARY KEY(meeting_num, challenger, opponent, match_id),
-    FOREIGN KEY (challenger) REFERENCES Player (pname),
-    FOREIGN KEY (opponent) REFERENCES Player (pname),
-    FOREIGN KEY (match_id) REFERENCES Matches (match_id)
-);
+
 
 -- table Tournament is the bracket of a competition.
     -- tournament_match_id: Number of the tournament match taking place. This is the primary key.
