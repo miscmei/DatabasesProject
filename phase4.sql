@@ -14,3 +14,12 @@ SELECT DISTINCT uname FROM User U, Player P WHERE
 SELECT PI.challenger AS strong_challenger, P.strength AS challenger_strength, PI.meeting_num,  PI.opponent FROM Player P, PlaysIn PI WHERE strength >= 8 AND P.pname = PI.challenger;
 
 -- Query 4: Query that uses a SQL aggregate function
+
+
+-- Query 5: Query that uses GROUP BY and HAVING 
+-- Returns the average intelligence of the players belonging to each user
+SELECT  uname, avg(P.intelligence) AS avg_intelligence
+FROM Player P, User U 
+WHERE U.player1 = P.pname OR U.player2 = P.pname OR U.player3 = P.pname 
+GROUP BY (U.uname) HAVING U.points >= 200;
+;
