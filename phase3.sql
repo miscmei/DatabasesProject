@@ -96,11 +96,11 @@ INSERT INTO Player (pname, strength, intelligence, durabil, battle_iq, speed, te
 
 -- Insert three users
 INSERT INTO User (uname, points, player1, player2, player3) VALUES
-    ('Anand', 0, 'Master Chief', 'A Brick', 'Julius Caesar'),
-    ('Maddy', 0, 'Bill Gates', 'Iron Man', 'Mario'),
-    ('User3', 0, 'Toyota Corolla', 'Neil Armstrong', 'Lebron James'),
-    ('User4', 0, 'Sonic', 'Link', 'An Anvil'),
-    ('User5', 0, 'Steve Jobs', 'Lightning McQueen', 'Minecraft Steve');
+    ('Anand', 100, 'Master Chief', 'A Brick', 'Julius Caesar'),
+    ('Maddy', 200, 'Bill Gates', 'Iron Man', 'Mario'),
+    ('User3', 300, 'Toyota Corolla', 'Neil Armstrong', 'Lebron James'),
+    ('User4', 400, 'Sonic', 'Link', 'An Anvil'),
+    ('User5', 500, 'Steve Jobs', 'Lightning McQueen', 'Minecraft Steve');
     -- ('User3', 0, 'Harry Potter', 'Professor Reilly', 'Mario');
         -- the above line throws an error about a duplicate entry for User3 for the primary key, even with different player values
 
