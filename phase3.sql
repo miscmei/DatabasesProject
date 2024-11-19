@@ -105,24 +105,24 @@ INSERT INTO User (uname, points, player1, player2, player3) VALUES
         -- the above line throws an error about a duplicate entry for User3 for the primary key, even with different player values
 
 -- Insert times for five matches
-INSERT INTO Matches (match_id, time_stamp) VALUES
-    (1, "2022-10-16 14:00:00"),
-    (2, "2022-10-17 12:00:00"),
-    (3, "2022-10-20 10:00:00"),
-    (4, "2022-10-20 11:00:00"),
-    (5, "2002-10-24 12:00:00"),
-    (6, "2002-10-21 08:00:00")
+INSERT INTO Matches (match_id, challenger, opponent, time_stamp) VALUES
+    (1, 'Master Chief', 'Iron Man', "2022-10-16 14:00:00"),
+    (2, 'A Brick', 'Bill Gates', "2022-10-17 12:00:00"),
+    (3, 'Toyota Corolla', 'Mario', "2022-10-20 10:00:00"),
+    (4, 'Master Chief', 'Lebron James', "2022-10-20 11:00:00"),
+    (5, 'A Brick', 'Bill Gates', "2002-10-24 12:00:00"),
+    (6, 'Steve Jobs', 'Minecraft Steve', "2002-10-21 08:00:00")
     ;
 
--- Insert players into PlaysIn table to know who is playing in each match
-INSERT INTO PlaysIn (meeting_num, challenger, opponent, match_id) VALUES
-    (1, 'Master Chief', 'Iron Man', 1),
-    (1, 'A Brick', 'Bill Gates', 2),
-    (1, 'Toyota Corolla', 'Mario', 3),
-    (1, 'Master Chief', 'Lebron James', 4),
-    (2, 'A Brick', 'Bill Gates', 5),
-    (1, 'Steve Jobs', 'Minecraft Steve', 6)
-    ;
+-- -- Insert players into PlaysIn table to know who is playing in each match
+-- INSERT INTO PlaysIn (meeting_num, challenger, opponent, match_id) VALUES
+--     (1, 'Master Chief', 'Iron Man', 1),
+--     (1, 'A Brick', 'Bill Gates', 2),
+--     (1, 'Toyota Corolla', 'Mario', 3),
+--     (1, 'Master Chief', 'Lebron James', 4),
+--     (2, 'A Brick', 'Bill Gates', 5),
+--     (1, 'Steve Jobs', 'Minecraft Steve', 6)
+--     ;
 
 -- Insert values for one tournament
 INSERT INTO Tournament (tournament_match_id, round_num, match_id) VALUES

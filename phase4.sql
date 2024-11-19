@@ -11,7 +11,7 @@ SELECT DISTINCT uname FROM User U, Player P WHERE
 
 -- Query 3: Complex condition to restrict returned rows
 -- Selects matches in which the challenger had strength >= 8
-SELECT PI.challenger AS strong_challenger, P.strength AS challenger_strength, PI.meeting_num,  PI.opponent FROM Player P, PlaysIn PI WHERE strength >= 8 AND P.pname = PI.challenger;
+SELECT M.challenger AS strong_challenger, P.strength AS challenger_strength, M.opponent, M.timestamp FROM Player P, Matches M WHERE strength >= 8 AND P.pname = M.challenger;
 
 -- Query 4: Query that uses a SQL aggregate function
 
