@@ -111,7 +111,8 @@ INSERT INTO Matches (match_id, challenger, opponent, time_stamp) VALUES
     (3, 'Toyota Corolla', 'Mario', "2022-10-20 10:00:00"),
     (4, 'Master Chief', 'Lebron James', "2022-10-20 11:00:00"),
     (5, 'A Brick', 'Bill Gates', "2002-10-24 12:00:00"),
-    (6, 'Steve Jobs', 'Minecraft Steve', "2002-10-21 08:00:00")
+    (6, 'Steve Jobs', 'Minecraft Steve', "2002-10-21 08:00:00"),
+    (7, 'Sonic', 'Master Chief', "2022-10-22 09:00:00")
     ;
 
 -- -- Insert players into PlaysIn table to know who is playing in each match
