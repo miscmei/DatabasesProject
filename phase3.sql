@@ -115,15 +115,7 @@ INSERT INTO Matches (match_id, challenger, opponent, time_stamp) VALUES
     (7, 'Sonic', 'Master Chief', "2022-10-22 09:00:00")
     ;
 
--- -- Insert players into PlaysIn table to know who is playing in each match
--- INSERT INTO PlaysIn (meeting_num, challenger, opponent, match_id) VALUES
---     (1, 'Master Chief', 'Iron Man', 1),
---     (1, 'A Brick', 'Bill Gates', 2),
---     (1, 'Toyota Corolla', 'Mario', 3),
---     (1, 'Master Chief', 'Lebron James', 4),
---     (2, 'A Brick', 'Bill Gates', 5),
---     (1, 'Steve Jobs', 'Minecraft Steve', 6)
---     ;
+
 
 -- Insert values for one tournament
 INSERT INTO Tournament (tournament_match_id, round_num, match_id) VALUES
