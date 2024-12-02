@@ -1009,6 +1009,11 @@ characters = {
 
               }
 
+users = []
+for i in range(6, 306):
+    users.append(f'User{i}')
+users = tuple(users)
+
 
 # generate random vals for each characters stats
 stats = []
@@ -1030,6 +1035,18 @@ for char in characters:
     indiv_char = tuple(indiv_char)
     all_char.append(indiv_char)
     i += 1
+
+# copy character list
+char_assign = all_char.copy()
+#loop through users
+for i in range(len(users)):
+    user_chars = []
+    # assign each user 3 players
+    for i in range(3):
+        # get a random player
+        character = char_assign.pop(random.randint(len(char_assign)))
+        user_chars.append(character)
+        #insert into database
 
 #print out data as a test
 print(all_char)
