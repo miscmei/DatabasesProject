@@ -1,4 +1,5 @@
 import random
+import datetime
 
 # characters to insert and genres
 # each character name is unqiue, so can be used as a dictionary key
@@ -1009,10 +1010,10 @@ characters = {
 
               }
 
+# generate a list of users, assigning each a name and a value for points between 0 and 700
 users = []
 for i in range(6, 306):
-    users.append(f'User{i}')
-users = tuple(users)
+    users.append([f'User{i}', random.randint(0, 700)])
 
 
 # generate random vals for each characters stats
@@ -1035,18 +1036,53 @@ for char in characters:
     indiv_char = tuple(indiv_char)
     all_char.append(indiv_char)
     i += 1
+    
+# insert players into database
 
 # copy character list
 char_assign = all_char.copy()
 #loop through users
 for i in range(len(users)):
-    user_chars = []
     # assign each user 3 players
-    for i in range(3):
+	for j in range(3):
         # get a random player
-        character = char_assign.pop(random.randint(len(char_assign)))
-        user_chars.append(character)
-        #insert into database
+		character = char_assign.pop(random.randint(0, len(char_assign) - 1))
+        # add random player to associated user
+		users[i].append(character[0])
 
-#print out data as a test
-print(all_char)
+
+# generate 100 random matches
+curdate = datetime.datetime(2020, 1, 1, 8, 0, 0)
+for i in range(100):
+    # select two random users
+	user1 = random.randint(0, len(users) - 1)
+	user2 = random.randint(0, len(users) - 1)
+    # make sure users are different
+	while(user2 == user1):
+		user2 = random.randint(0, len(users))
+        
+	#select random player from each user
+	player1 = random.randint(2, 4)
+	player2 = random.randint(2, 4)
+
+	# create tuple of match to insert
+	to_insert = (8 + i, users[user1][player1], users[user2][player2], f'{curdate}')
+	
+	#update date
+	newhour = curdate.hour + 1
+	newday = curdate.day
+	newmonth = curdate.month
+	newyear = curdate.year
+	if(curdate.hour == 20):
+		newhour = 8
+		newday = curdate.day + 1
+		if(curdate.day == 28):
+			newday = 1
+			newmonth = curdate.month + 1
+			if(curdate.month == 12):
+				newmonth = 1
+				newyear = curdate.year + 1
+
+	curdate = datetime.datetime(newyear, newmonth, newday, newhour)
+
+# select 6 more matches to add to a tournament round of 16
