@@ -1,5 +1,6 @@
 import random
 import datetime
+import mariadb
 
 # characters to insert and genres
 # each character name is unqiue, so can be used as a dictionary key
@@ -71,7 +72,7 @@ characters = {
 	"Volodymyr Zelenskyy": "Real Person",
 	"Vladimir Putin": "Real Person",
 	"Giorgia Meloni": "Real Person",
-	"Recep Tayyip Erdoğan": "Real Person",
+	"Recep Tayyip Erdogan": "Real Person",
 	"Benjamin Netanyahu": "Real Person",
 	"Jacinda Ardern": "Real Person",
 	"John Howard": "Real Person",
@@ -1010,6 +1011,27 @@ characters = {
 
               }
 
+dbName = "proj_bf"
+
+dbUser = "abasu"
+
+dbPass = "pass3607"
+
+print('connecting to db')
+try:
+	conn = mariadb.connect(
+		user = dbUser,
+		password = dbPass,
+		host="cslab.skidmore.edu",
+		port=3306,
+		database=dbName
+	)
+except mariadb.Error as e:
+	print(f'Error connecting to MariaDB: {e}')
+	exit(1)
+
+cur = conn.cursor()
+
 # generate a list of users, assigning each a name and a value for points between 0 and 700
 users = []
 for i in range(6, 306):
@@ -1038,6 +1060,15 @@ for char in characters:
     i += 1
     
 # insert players into database
+cur.executemany("INSERT INTO Player (pname, strength, intelligence, durabil, battle_iq, speed, tech, magic, genre) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", all_char)
+
+conn.commit()
+
+# cur.execute("INSERT INTO Player (pname, strength, intelligence, durabil, battle_iq, speed, tech, magic, genre) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", ('test', 1, 1, 1, 1, 1, 1, 1, 'Real Person'))
+cur.execute("SELECT * From Player")
+for x in cur:
+	print(x)
+
 
 # copy character list
 char_assign = all_char.copy()
@@ -1049,7 +1080,9 @@ for i in range(len(users)):
 		character = char_assign.pop(random.randint(0, len(char_assign) - 1))
         # add random player to associated user
 		users[i].append(character[0])
-
+users = tuple(users)
+cur.executemany("INSERT INTO User (uname, points, player1, player2, player3) VALUES (?, ?, ?, ?, ?)", users)
+conn.commit()
 
 # generate 100 random matches
 curdate = datetime.datetime(2020, 1, 1, 8, 0, 0)
@@ -1067,6 +1100,9 @@ for i in range(100):
 
 	# create tuple of match to insert
 	to_insert = (8 + i, users[user1][player1], users[user2][player2], f'{curdate}')
+
+	cur.execute("INSERT INTO Matches (match_id, challenger, opponent, time_stamp) VALUES (?, ?, ?, ?)", to_insert)
+	conn.commit()
 	
 	#update date
 	newhour = curdate.hour + 1
@@ -1084,5 +1120,9 @@ for i in range(100):
 				newyear = curdate.year + 1
 
 	curdate = datetime.datetime(newyear, newmonth, newday, newhour)
+
+
+
+conn.close()
 
 # select 6 more matches to add to a tournament round of 16
