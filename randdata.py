@@ -1064,11 +1064,6 @@ cur.executemany("INSERT INTO Player (pname, strength, intelligence, durabil, bat
 
 conn.commit()
 
-# cur.execute("INSERT INTO Player (pname, strength, intelligence, durabil, battle_iq, speed, tech, magic, genre) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", ('test', 1, 1, 1, 1, 1, 1, 1, 'Real Person'))
-cur.execute("SELECT * From Player")
-for x in cur:
-	print(x)
-
 
 # copy character list
 char_assign = all_char.copy()
@@ -1086,7 +1081,7 @@ conn.commit()
 
 # generate 100 random matches
 curdate = datetime.datetime(2020, 1, 1, 8, 0, 0)
-for i in range(100):
+for i in range(5000):
     # select two random users
 	user1 = random.randint(0, len(users) - 1)
 	user2 = random.randint(0, len(users) - 1)
@@ -1122,7 +1117,30 @@ for i in range(100):
 	curdate = datetime.datetime(newyear, newmonth, newday, newhour)
 
 
+# select 6 more matches to add to a tournament round of 16
+i = 3
+challengers = []
+opponents = []
+while(True):
+	# select a random match to make a tournament match
+	rand_match = random.randint(2, 107)
+	cur.execute('SELECT challenger, opponent, match_id FROM Matches WHERE match_id = (?)', (rand_match,))
+	# check if selected players are already in the tournament
+	temp = list(tuple((cur))[0])
+	p1 = temp[0]
+	p2 = temp[1]
+	match = temp[2]
+
+	if p1 not in challengers and p2 not in opponents:
+		challengers.append(p1)
+		opponents.append(p2)
+		cur.execute("INSERT INTO Tournament (tournament_match_id, round_num, match_id) VALUES (?, ?, ?)", (i, 1, match))
+		i += 1
+		if i == 8:
+			break
+
+conn.commit()
+
+print("Random data insertion succesful")
 
 conn.close()
-
-# select 6 more matches to add to a tournament round of 16
