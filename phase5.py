@@ -10,7 +10,7 @@ dbUser = 'abasu'
 
 dbPass = 'pass3607'
 
-query1_str = 'SELECT pname FROM Player WHERE strength > ?'
+query1_str = 'SELECT pname FROM Player WHERE ? > ?'
 
 query2_str = 'SELECT DISTINCT uname FROM User U, Player P WHERE (U.player1 = P.pname OR U.player2 = P.pname OR U.player3 = P.pname) AND P.? > 7'
 
@@ -50,8 +50,8 @@ class EverythingFantasyAPI:
 
     # def run_q1
     def run_q1(self, attribute, num):
-        self.query1_cur.execute(query1_str,(num,))
-        # print(list(self.query1_cur))
+        self.query1_cur.execute(query1_str,(attribute, num,))
+        print(list(self.query1_cur))
         players = []
         for row in list(self.query1_cur):
             players.append(row)
