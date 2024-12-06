@@ -25,7 +25,12 @@ def main():
     for row in result:
         print(f'pname: {row[0]}, strength: {row[1]}')
     print()
+    result = bf_api.run_q4('Barack Obama')
+    print('Barack Obama matches: ' + str(result))
+    result = bf_api.run_q4('Lime')
+    print('Lime matches: ' + str(result))
     bf_api.close()
+
 
 
 # Tell the Python interpreter to begin execution at the main function
