@@ -49,11 +49,11 @@ class EverythingFantasyAPI:
 
 
     # def run_q1
-        def run_q1(self, attribute, num):
-            self.query1_cur.execute(query1_str,(attribute, num,))
+    def run_q1(self, attribute, num):
+        self.query1_cur.execute(query1_str,(attribute, num,))
 
-            players = []
-            for (row) in self.query1_cur:
-                players.append((row[0],row[1]))
-            
-            return players
+        players = []
+        for (row) in self.query1_cur:
+            players.append((row[0],row[1]))
+        
+        return players
