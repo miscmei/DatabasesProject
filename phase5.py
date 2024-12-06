@@ -1,4 +1,8 @@
+# Anand Basu and Maddy Fung
+# Project Phase 5
+
 import mariadb
+import sys
 
 dbName = 'proj_bf'
 
@@ -44,3 +48,12 @@ class EverythingFantasyAPI:
         print('Database connection is closed')
 
 
+    # def run_q1
+        def run_q1(self, attribute, num):
+            self.query1_cur.execute(query1_str,(attribute, num,))
+
+            players = []
+            for (row) in self.query1_cur:
+                players.append((row[0],row[1]))
+            
+            return players
