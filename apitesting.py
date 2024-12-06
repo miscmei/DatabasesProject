@@ -8,12 +8,12 @@ def main():
 
     # run query 1 a few times
     print()
-    result = bf_api.run_q1('strength', 5)
+    result = bf_api.run_q1(5)
     for row in result:
         print('pname: ' + str(row[0]))
 
     print()
-    result = bf_api.run_q1('strength', 9)
+    result = bf_api.run_q1(9)
     for row in result:
         print('pname: ' + str(row[0]))
 

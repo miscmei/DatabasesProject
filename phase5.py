@@ -53,8 +53,7 @@ class EverythingFantasyAPI:
         # creating DB cursors for each query 
         # setting to True so that the same query is run each time the cursor executes
         self.query1_cur = self.conn.cursor(prepared=True)
-        self.query2_cur = self.conn.cursor(prepared=True    # runs query 1 using the provided number for the strength
-)
+        self.query2_cur = self.conn.cursor(prepared=True)    
         self.query3_cur = self.conn.cursor(prepared=True)
         self.query4_cur = self.conn.cursor(prepared=True)
         self.query5_cur = self.conn.cursor(prepared=True)
@@ -70,7 +69,7 @@ class EverythingFantasyAPI:
 
 
     # runs query 1 using the provided number for the strength
-    def run_q1(self, attribute, num):
+    def run_q1(self, num):
         self.query1_cur.execute(query1_str,(num,))
         players = []
         for row in list(self.query1_cur):
@@ -113,7 +112,6 @@ class EverythingFantasyAPI:
         
     # runs the query to find users with players that participated in tournament matches
     def run_q6(self):
-        print(query6_str)
         self.query6_cur.execute(query6_str)
 
         return list(self.query6_cur)
