@@ -1123,7 +1123,7 @@ challengers = []
 opponents = []
 while(True):
 	# select a random match to make a tournament match
-	rand_match = random.randint(2, 107)
+	rand_match = random.randint(8, 107)
 	cur.execute('SELECT challenger, opponent, match_id FROM Matches WHERE match_id = (?)', (rand_match,))
 	# check if selected players are already in the tournament
 	temp = list(tuple((cur))[0])
@@ -1131,12 +1131,12 @@ while(True):
 	p2 = temp[1]
 	match = temp[2]
 
-	if p1 not in challengers and p2 not in opponents:
+	if p1 not in challengers and p1 not in opponents and p2 not in challengers and p2 not in opponents:
 		challengers.append(p1)
 		opponents.append(p2)
 		cur.execute("INSERT INTO Tournament (tournament_match_id, round_num, match_id) VALUES (?, ?, ?)", (i, 1, match))
 		i += 1
-		if i == 8:
+		if i == 9:
 			break
 
 conn.commit()

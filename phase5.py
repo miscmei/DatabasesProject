@@ -20,7 +20,12 @@ query4_str = 'SELECT COUNT(*) AS Player_Matches FROM Matches WHERE challenger = 
 
 query5_str = 'SELECT U.uname, avg(P.intelligence) AS avg_intelligence FROM Player P, User U WHERE U.player1 = P.pname OR U.player2 = P.pname OR U.player3 = P.pname GROUP BY (U.uname) HAVING AVG(P.intelligence) > ? '
 
-
+query6_str = '(SELECT uname FROM User WHERE player1 IN (SELECT challenger FROM Matches WHERE match_id IN (SELECT match_id FROM Tournament)))'
+query6_str += ' UNION (SELECT uname FROM User WHERE player2 IN (SELECT challenger FROM Matches WHERE match_id IN (SELECT match_id FROM Tournament)))'
+query6_str += ' UNION (SELECT uname FROM User WHERE player3 IN (SELECT challenger FROM Matches WHERE match_id IN (SELECT match_id FROM Tournament)))'
+query6_str += ' UNION (SELECT uname FROM User WHERE player1 IN (SELECT opponent FROM Matches WHERE match_id IN (SELECT match_id FROM Tournament)))'
+query6_str += ' UNION (SELECT uname FROM User WHERE player2 IN (SELECT opponent FROM Matches WHERE match_id IN (SELECT match_id FROM Tournament)))'
+query6_str += ' UNION (SELECT uname FROM User WHERE player3 IN (SELECT opponent FROM Matches WHERE match_id IN (SELECT match_id FROM Tournament)))'
 
 class EverythingFantasyAPI:
 
@@ -90,3 +95,8 @@ class EverythingFantasyAPI:
 
         return users
         
+    def run_q6(self):
+        print(query6_str)
+        self.query6_cur.execute(query6_str)
+
+        return list(self.query6_cur)

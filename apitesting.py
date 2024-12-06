@@ -60,6 +60,10 @@ def main():
     for row in result:
         print('uName: ' + str(row[0]) + ', with average intelligence ' + str(row[1]))
 
+    #query 6
+    result = bf_api.run_q6()
+    for user in result:
+        print('uName: ' + str(user[0]))
 
     bf_api.close()
 
