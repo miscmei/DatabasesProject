@@ -8,10 +8,9 @@ def main():
 
     # run query 1 a few times
     print()
-    result = bf_api.run_q1("strength", 5)
+    result = bf_api.run_q1(5)
     for row in result:
         print('pname: ' + str(row[0]))
-
 
     # run query 2 a few times
     print()
@@ -20,7 +19,11 @@ def main():
         print('uName: ' + str(row[0]))
 
 
+    print()
 
+    result = bf_api.run_q3(8)
+    for row in result:
+        print(f'pname: {row[0]}, strength: {row[1]}')
     print()
     bf_api.close()
 
