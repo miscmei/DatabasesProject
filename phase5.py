@@ -49,7 +49,7 @@ class EverythingFantasyAPI:
 
 
     # def run_q1
-    def run_q1(self, num):
+    def run_q1(self, attribute, num):
         self.query1_cur.execute(query1_str,(num,))
         players = []
         for row in list(self.query1_cur):
