@@ -73,4 +73,11 @@ class EverythingFantasyAPI:
 
         return players
     
-    
+    def run_q4(self, name):
+        self.query4_cur.execute(query3_str, (name,))
+
+        # count = 0
+        # for row in list(self.query4_cur):
+        #     count++
+
+        return count
