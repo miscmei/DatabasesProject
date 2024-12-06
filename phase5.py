@@ -12,6 +12,8 @@ query2_str = 'SELECT DISTINCT uname FROM User U, Player P WHERE (U.player1 = P.p
 
 query3_str = 'SELECT M.challenger AS strong_challenger, P.strength AS challenger_strength, M.opponent, M.time_stamp FROM Player P, Matches M WHERE strength >= 8 AND P.pname = M.challenger'
 
+query4_str = 'SELECT COUNT(*) AS Player_Matches FROM Matches WHERE challenger = ? OR opponent = ?'
+
 class EverythingFantasyAPI:
 
     def __init__(self):
