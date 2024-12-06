@@ -13,6 +13,13 @@ def main():
         print('pname: ' + str(row[0]))
 
 
+    # run query 2 a few times
+    print()
+    result = bf_api.run_q2(7)
+    for row in result:
+        print('uName: ' + str(row[0]))
+
+
 
     print()
     bf_api.close()
