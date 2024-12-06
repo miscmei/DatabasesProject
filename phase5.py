@@ -18,6 +18,10 @@ query3_str = 'SELECT M.challenger AS strong_challenger, P.strength AS challenger
 
 query4_str = 'SELECT COUNT(*) AS Player_Matches FROM Matches WHERE challenger = ? OR opponent = ?'
 
+query5_str = 'SELECT U.uname, avg(P.intelligence) AS avg_intelligence FROM Player P, User U WHERE U.player1 = P.pname OR U.player2 = P.pname OR U.player3 = P.pname GROUP BY (U.uname) HAVING AVG(P.intelligence) > ? '
+
+
+
 class EverythingFantasyAPI:
 
     def __init__(self):
@@ -75,9 +79,14 @@ class EverythingFantasyAPI:
     
     def run_q4(self, name):
         self.query4_cur.execute(query4_str, (name, name))
-        # count = 0
-        # for row in list(self.query4_cur):
-        #     count++
 
         return list(self.query4_cur)[0][0]
+        
+    def run_q5(self, num):
+        self.query5_cur.execute(query5_str, (num,))
+        users = []
+        for row in list(self.query5_cur):
+            users.append(row)
+
+        return users
         

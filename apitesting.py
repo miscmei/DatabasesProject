@@ -11,10 +11,9 @@ def main():
     result = bf_api.run_q1('strength', 5)
     for row in result:
         print('pname: ' + str(row[0]))
-    exit()
 
     print()
-    result = bf_api.run_q1(9)
+    result = bf_api.run_q1('strength', 9)
     for row in result:
         print('pname: ' + str(row[0]))
 
@@ -48,7 +47,18 @@ def main():
 
     
 
+    # run query 5 a few times
+    print()
+    result = bf_api.run_q5(7)
+    print('Users with avg intelligence > 7: ')
+    for row in result:
+        print('uName: ' + str(row[0]) + ', with average intelligence ' + str(row[1]))
 
+    print()
+    result = bf_api.run_q5(9)
+    print('Users with avg intelligence > 9: ')
+    for row in result:
+        print('uName: ' + str(row[0]) + ', with average intelligence ' + str(row[1]))
 
 
     bf_api.close()
