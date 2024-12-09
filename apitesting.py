@@ -9,22 +9,26 @@ def main():
     # run query 1 a few times
     print()
     result = bf_api.run_q1(5)
+    print('Players with strength greater than 5:')
     for row in result:
         print('pname: ' + str(row[0]))
 
     print()
     result = bf_api.run_q1(9)
+    print('Players with strength greater than 9:')
     for row in result:
         print('pname: ' + str(row[0]))
 
     # run query 2 a few times
     print()
     result = bf_api.run_q2(7)
+    print('Users with players who have magic > 7:')
     for row in result:
         print('uName: ' + str(row[0]))
 
     print()
     result = bf_api.run_q2(9)
+    print('Users with players who have magic > 9: ')
     for row in result:
         print('uName: ' + str(row[0]))
 
@@ -32,6 +36,7 @@ def main():
     # run query 3 a few times
     print()
     result = bf_api.run_q3(8)
+    print('Matches in which the challenger had strength > 8:')
     for row in result:
         print(f'pname: {row[0]}, strength: {row[1]}')
 
@@ -62,6 +67,7 @@ def main():
 
     #query 6
     result = bf_api.run_q6()
+    print('Users who had players in matches: ')
     for user in result:
         print('uName: ' + str(user[0]))
 
