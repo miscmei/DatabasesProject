@@ -78,8 +78,8 @@ class EverythingFantasyAPI:
         return players
     
     # runs query 2 using the provided number for the magic
-    def run_q2(self, num, num2):
-        self.query2_cur.execute(query2_str,(num, num2))
+    def run_q2(self, num):
+        self.query2_cur.execute(query2_str,(num,))
         users = []
         for row in list(self.query2_cur):
             users.append(row)
@@ -87,8 +87,8 @@ class EverythingFantasyAPI:
         return users
     
     # runs query 3 using the provided number for the strength of the challenger
-    def run_q3(self, num):
-        self.query3_cur.execute(query3_str, (num,))
+    def run_q3(self, num, num2):
+        self.query3_cur.execute(query3_str, (num, num2))
         players = []
         for row in list(self.query3_cur):
             players.append(row)
