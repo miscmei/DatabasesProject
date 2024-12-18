@@ -16,7 +16,7 @@ query1_str = 'SELECT pname FROM Player WHERE strength > ?'
 query2_str = 'SELECT DISTINCT uname FROM User U, Player P WHERE (U.player1 = P.pname OR U.player2 = P.pname OR U.player3 = P.pname) AND P.magic > ?'
 
 # -- Selects matches in which the challenger had strength >= a number 1-10
-query3_str = 'SELECT M.challenger AS strong_challenger, P.strength AS challenger_strength, M.opponent, M.time_stamp FROM Player P, Matches M WHERE strength >= ? AND P.pname = M.challenger'
+query3_str = 'SELECT pname FROM Player WHERE strength >= ? AND intelligence >= ?;'
 
 # -- Counts the number of matches involving a specific player
 query4_str = 'SELECT COUNT(*) AS Player_Matches FROM Matches WHERE challenger = ? OR opponent = ?'
@@ -78,8 +78,8 @@ class EverythingFantasyAPI:
         return players
     
     # runs query 2 using the provided number for the magic
-    def run_q2(self, num):
-        self.query2_cur.execute(query2_str,(num,))
+    def run_q2(self, num, num2):
+        self.query2_cur.execute(query2_str,(num, num2))
         users = []
         for row in list(self.query2_cur):
             users.append(row)
