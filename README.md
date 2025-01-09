@@ -17,5 +17,5 @@ This is a relational database is for an all-purpose fantasy league. It utilizes 
 4. The file apitesting.py prints out a large amount of data to the screen, but each print is separated by a blank line, although it might be best to run each test query one at a time.
 
 # Acknowledgements
-Authors: Maddy Fung and Anand Basu
-This project is for the Database Systems course taught by Dr. Christine Reilly at Skidmore College
+Authors: Maddy Fung and Anand Basu. 
+This project is for the Database Systems course taught by Dr. Christine Reilly at Skidmore College.
